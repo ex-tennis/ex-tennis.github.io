@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Brache</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
+<style>
+
+
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+
+
+	.mapboxgl-popup {
+max-width: 400px;
+font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+padding-top: -20px;
+}
+
+.marker {
+background-size: cover;
+cursor: pointer;
+#-webkit-transform-origin: 0px 0px;
+#-moz-transform-origin: 0px 0px;
+#-ms-transform-origin: 0px 0px;
+#-o-transform-origin: 0px 0px;
+#transform-origin: 0px 0px;
+#-webkit-transform: rotate(30deg);
+#-moz-transform: rotate(30deg);
+#-ms-transform: rotate(30deg);
+#-o-transform: rotate(30deg);
+#transform: rotate(30deg);
+}
+
+
+
+.button2{
+	position: absolute;
+	top: -10%;
+	left: -10%;
+	display:block;
+	cursor: pointer;
+	width:120%;
+	height:120%;
+	border:0.5em solid #FFFFFF;
+	border-radius:0.5em;
+	box-sizing: border-box;
+    background: transparent;
+    font-size:0;
+}
+
+.overlay {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    text-align: left;
+    background-color: #333333;
+	padding: 24px;
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	border-radius:0.1em;
+	color: white;
+	visibility: hidden;
+    transition: opacity .2s ease-out;
+}
+
+.innerbutton{
+     margin-top: 1px;
+     margin-right: 2px;
+     position:absolute;
+     top:0;
+     right:0;
+	display:block;
+	cursor: pointer;
+	border: transparent;
+    background: transparent;
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	color: #F3F3F3;
+}
+
+</style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoibHVpc2UtaGFldXNlciIsImEiOiJja2d3MHEybHQwNW5pMzBycm9rOXFndzV0In0.0DUrtkqAOlmHkX8BXtixmw';
+var center_x = 8.349325060844421;
+var center_y = 49.01890053442718;
+var vorort_mode = true;
+var show_selector = true;
+var items = {
+'type': 'geojson',
+'data': {
+  "type": "FeatureCollection",
+  "features": [
+  {
+      "type": "Feature",
+      "properties": {
+			'description': 'Maria Tackmann, Öl auf Brache, 2021.',
+			'image': 'https://luisevonderwiese.github.io/images/brache_1.jpg',
+            'icon': 'https://luisevonderwiese.github.io/icons/circle.png',
+            'iconSize': [10, 10],
+			'rotation' : 90,
+			'begin' : '2021-09-14-00-00',
+			'end' : '2021-11-07-23-59',
+			'begin_daily' : '00-00',
+			'end_daily' : '23-59',
+			'area' : {'type': 'geojson',
+				'data': {'type': 'Feature',
+							'geometry': {'type': 'Polygon','coordinates': [[
+            [
+			  8.349302262067795,
+              49.01907291804756
+            ],
+            [
+              8.349264711141586,
+              49.019063243472445
+            ],
+            [
+              8.34925130009651,
+              49.01904125579471
+            ],
+            [
+              8.349296897649765,
+              49.01901750909186
+            ],
+            [
+              8.349330425262451,
+              49.019029822198455
+            ],
+            [
+              8.349337130784988,
+              49.01905972544465
+            ],
+            [
+              8.349302262067795,
+              49.01907291804756
+            ]]]}}}},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+              8.34928,
+              49.019025
+            ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+			'description': 'Maria Tackmann, Papier auf Sand, 2021.',
+			'image': 'https://luisevonderwiese.github.io/images/brache_2.jpg',
+            'icon': 'https://luisevonderwiese.github.io/icons/three_lines.png',
+            'iconSize': [30,30],
+			'rotation' : 90,
+			'begin' : '2021-09-14-00-00',
+			'end' : '2021-11-07-23-59',
+			'begin_daily' : '00-00',
+			'end_daily' : '23-59'},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.349193895168304,
+          49.018904052466226
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+			'description': 'Pappbecher in Vegetation, Unbekannt, 2021.',
+			'image': 'https://luisevonderwiese.github.io/images/brache_3.jpg',
+            'icon': 'https://luisevonderwiese.github.io/icons/circle.png',
+            'iconSize': [15,15],
+			'rotation' : 0,
+			'begin' : '1970-01-01-00-00',
+			'end' : '2100-12-31-23-59',
+			'begin_daily' : '00-00',
+			'end_daily' : '23-59'},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.349451124668121,
+          49.018868872064665
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+			'description': 'David Heitz, Fotografie, 2021.',
+            'icon': 'https://luisevonderwiese.github.io/icons/arrow.png',
+			'image': 'https://luisevonderwiese.github.io/images/brache_3.jpg',
+            'iconSize': [15,15],
+			'rotation' : 30, 
+			'begin' : '1970-01-01-00-00',
+			'end' : '2100-12-31-23-59',
+			'begin_daily' : '21-00',
+			'end_daily' : '21-45'},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.349448442459106,
+          49.01910106225542
+        ]
+      }
+    }
+  ]
+}
+}
+
+var map = new mapboxgl.Map({
+container: 'map',
+style: 'mapbox://styles/luise-haeuser/cktemen6q2gba17s0txukk39c', 
+center: [center_x, center_y], 
+zoom: 18.5,
+/*maxZoom: 19,
+minZoom: 18*/
+});
+
+var geolocate = new mapboxgl.GeolocateControl({
+positionOptions: {
+enableHighAccuracy: true
+},
+// When active the map will receive updates to the device's location as it changes.
+trackUserLocation: true,
+// Draw an arrow next to the location dot to indicate which direction the device is heading.
+showUserHeading: true
+});
+
+/*geolocate.on('geolocate', function(e) {
+	if(!nearAreal(e.coords.longitude, e.coords.latitude)) {
+				map.flyTo({
+					center: [center_x, center_y],
+					zoom: 18.5,
+					essential: true // this animation is considered essential with respect to prefers-reduced-motion
+				});
+				//alert("Standort außerhalb der Ausstellungsfläche!");
+	}
+});*/
+
+map.addControl(geolocate);
+
+
+
+
+
+
+map.on('load', () => {
+
+map.addSource('border', {
+'type': 'geojson',
+'data': {
+'type': 'Feature',
+'geometry': {
+'type': 'Polygon',
+'coordinates': [
+            [
+            [
+				8.349478,
+				49.019124
+            ],
+            [
+				8.349093,
+				49.019028
+            ],
+            [
+				8.349046,
+				49.018993
+            ],
+            [
+				8.349191,
+				49.018706
+            ],
+            [
+				8.349659,
+				49.018827
+            ],
+			[
+				8.349478,
+				49.019124
+            ]
+]
+]
+}
+}
+});
+
+map.addLayer({
+'id': 'outline',
+'type': 'line',
+'source': 'border',
+'layout': {},
+'paint': {
+'line-color': '#000',
+'line-width': 1
+}
+});
+
+var i = 0
+items.data.features.forEach(function (marker) {
+	if(visibleNow(marker)){
+		if(map.getSource('area_' + i) == undefined && marker.properties.area != undefined) {
+			map.addSource('area_' + i, marker.properties.area);
+			map.addLayer({
+				'id': 'area_' + i,
+				'type': 'line',
+				'source': 'area_' + i,
+				'layout': {},
+				'paint': {
+					'line-color': '#000',
+					'line-width': 1
+				}});
+		}
+		i++;
+	}
+});
+
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(function(position) {
+	if(!nearAreal(position.coords.longitude, position.coords.latitude)) {
+		vorort_mode = false;
+		console.log("switch to home mode");
+	} else {
+		geolocate.trigger();
+	}
+  });
+}
+
+
+});
+
+
+items.data.features.forEach(function (marker) {
+	if(visibleNow(marker)){
+	    var el = document.createElement('div');
+        el.className = 'marker';
+		el.style.width = marker.properties.iconSize[0] + 'px';
+        el.style.height = marker.properties.iconSize[1] + 'px';
+		el.style.border = marker.properties.iconSize[0] + 'px';
+		el.style.backgroundImage = 'url(\'' + marker.properties.icon + '\')';
+		var popup = new mapboxgl.Popup({ offset: marker.properties.iconSize[1]/2 + 2 }).setHTML(
+			"<div style=\"padding:12px\"><img class = \"popupimg\" src=\"" + marker.properties.image + "\" style=\"margin:auto; width:200px;display:block\" />" + marker.properties.description + '<div/>'
+				
+		);
+		
+		new mapboxgl.Marker(el)
+		.setLngLat(marker.geometry.coordinates)
+		.setPopup(popup)
+		.addTo(map);
+		
+
+	}
+		
+
+    });
+
+
+
+function visibleNow(marker) {
+	const today = new Date();
+	let parts = marker.properties.begin.split('-');
+	const begin = new Date(parts[0], parts[1]-1, parts[2], parts[3], parts[4]);
+	parts = marker.properties.end.split('-');
+	const end = new Date(parts[0], parts[1]-1, parts[2], parts[3], parts[4]);
+	parts = marker.properties.begin_daily.split('-');
+	const begin_daily = new Date(today.getFullYear(), today.getMonth(), today.getDate(), parts[0], parts[1]);
+    parts = marker.properties.end_daily.split('-');
+	const end_daily = new Date(today.getFullYear(), today.getMonth(), today.getDate(), parts[0], parts[1]);
+	if(today.getTime() < begin.getTime() || today.getTime() > end.getTime()) {
+		return false;
+	}
+	if(today.getTime() < begin_daily.getTime() || today.getTime() > end_daily.getTime()) {
+		return false;
+	}
+	return true;
+}
+
+	
+function nearAreal(x, y){
+	/*var y_rad = 0.001;
+	var x_rad = 0.0005;*/
+	//Bis Bibliothek
+	var y_rad = 0.02;
+	var x_rad = 0.01;
+    var p = (parseInt(Math.pow((x - center_x), 2)) / parseInt(Math.pow(x_rad, 2)))
+            + (parseInt(Math.pow((y - center_y), 2)) / parseInt(Math.pow(y_rad, 2)));
+ 
+    return p <= 1;
+}
+
+class ResetButton {
+  onAdd(map){
+    this.map = map;
+    this.container = document.createElement('div');
+	this.container.style.backgroundSize = 'cover';
+	this.container.style.backgroundImage = 'url(https://luisevonderwiese.github.io/icons/reset.png)';
+	this.container.style.width = '25px';
+	this.container.style.height = '25px';
+    this.container.style.margin = '1em 1em 0em 0em';
+    this.container.className = 'mapboxgl-ctrl';
+    const button = this._createButton('button2')
+    this.container.appendChild(button);
+    return this.container;
+  }
+  onRemove(){
+    this.container.parentNode.removeChild(this.container);
+    this.map = undefined;
+  }
+  
+  _createButton(className) {
+    const el = window.document.createElement('button')
+    el.className = className;
+    el.addEventListener('click',(e)=>{
+		this.map.flyTo({
+center: [center_x, center_y],
+zoom: 18.5,
+essential: true // this animation is considered essential with respect to prefers-reduced-motion
+});
+    },false )
+    return el;
+  }
+}
+
+
+
+class AboutButton {
+  onAdd(map){
+    this.map = map;
+    this.container = document.createElement('div');
+	this.container.style.backgroundSize = 'cover';
+	this.container.style.backgroundImage = 'url(https://luisevonderwiese.github.io/icons/info.png)';
+	this.container.style.width = '25px';
+	this.container.style.height = '25px';
+    this.container.style.margin = '1em 1em 0em 0em';
+    this.container.className = 'mapboxgl-ctrl';
+    const button = this._createButton('button2')
+    this.container.appendChild(button);
+    return this.container;
+  }
+  onRemove(){
+    this.container.parentNode.removeChild(this.container);
+    this.map = undefined;
+  }
+  
+  _createButton(className) {
+    const el = window.document.createElement('button')
+    el.className = className;
+    el.addEventListener('click',(e)=>{
+  let overlayDiv = document.querySelector(".overlay");
+  console.log(overlayDiv.style.opacity);
+  if (overlayDiv.style.visibility === 'hidden')
+    overlayDiv.style.visibility = 'visible';
+  else
+    overlayDiv.style.opacity = 'hidden';},false )
+    return el;
+  }
+}
+
+const resetButton = new ResetButton();
+map.addControl(resetButton);
+
+const aboutButton = new AboutButton();
+map.addControl(aboutButton);
+
+
+
+</script>
+
+<div class="overlay" style="visibility: hidden;">
+<button  class = "innerbutton" onclick="document.querySelector('.overlay').style.visibility = 'hidden'">close</button>
+Hier steht ein interessanter Text über unser Projekt. <br> Und darüber, wer wir sind und was wir machen. <br> Ganz tolle Sachen nämlich. <br> Außerdem gibt es Kuchen.  <br> Vielleicht. <br> </div>
+
+</body>
+</html>
