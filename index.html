@@ -371,8 +371,9 @@ items.data.features.forEach(function (marker) {
         el.style.height = marker.properties.iconSize[1] + 'px';
 		el.style.border = marker.properties.iconSize[0] + 'px';
 		el.style.maskImage = 'url(\'' + marker.properties.icon + '\')';
-		el.style.maskSize = 'contain';
 		el.style.webkitMaskImage = 'url(\'' + marker.properties.icon + '\')';
+		el.style.maskSize = 'contain';
+		el.style.webkitMaskSize = 'contain';
 		el.style.backgroundColor = ('red');
 		var popup = new mapboxgl.Popup({ offset: marker.properties.iconSize[1]/2 + 2 }).setHTML(
 			"<div style=\"padding:12px\"><img class = \"popupimg\" src=\"" + marker.properties.image + "\" style=\"margin:auto; width:200px;display:block\" />" + marker.properties.description + '<div/>'
