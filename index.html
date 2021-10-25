@@ -428,10 +428,8 @@ markers.forEach(function (marker) {
 	
     const scalePercent = Math.pow(2, map.getZoom() - 18.5);
     const el = marker.getElement();
-	console.debug(scalePercent);
 	el.style.width = items.data.features[i].properties.iconSize[0]*scalePercent + 'px';
     el.style.height = items.data.features[i].properties.iconSize[1]*scalePercent + 'px';
-	console.debug(el.style.width);
 	i++;
 });
 });
@@ -560,7 +558,6 @@ class AboutButton {
     el.className = className;
     el.addEventListener('click',(e)=>{
   let overlayDiv = document.querySelector(".overlay");
-  console.log(overlayDiv.style.opacity);
   if (overlayDiv.style.visibility === 'hidden')
     overlayDiv.style.visibility = 'visible';
   else
