@@ -93,6 +93,7 @@ cursor: pointer;
 <div id="map"></div>
 
 <script>
+//tennisfarbe: #993300
 mapboxgl.accessToken = 'pk.eyJ1IjoibHVpc2UtaGFldXNlciIsImEiOiJja2d3MHEybHQwNW5pMzBycm9rOXFndzV0In0.0DUrtkqAOlmHkX8BXtixmw';
 var center_tennis_long = 8.349325060844421;
 var center_tennis_lat = 49.01890053442718;
@@ -244,6 +245,8 @@ var items = {
 			'image': '',
             'iconSize': [20,20],
 			'rotation' : 0, 
+			'color': 'green',
+			'opacity': 0.9,
 			'begin' : '2021-11-03-00-00',
 			'end' : '2100-12-31-23-59',
 			'begin_daily' : '00-00',
@@ -265,6 +268,8 @@ var items = {
 			'image': '',
             'iconSize': [15,15],
 			'rotation' : 0, 
+			'color': '#1E90FF',
+			'opacity': 0.9,
 			'begin' : '2021-11-03-00-00',
 			'end' : '2100-12-31-23-59',
 			'begin_daily' : '00-00',
@@ -434,7 +439,7 @@ map.addLayer({
     "source": "border_ex_libris",
     "layout": {},
     "paint": {
-        "fill-color": "yellow",
+        "fill-color": "#1E90FF",
         "fill-opacity": 0.1
     }
 });
@@ -497,7 +502,8 @@ items.data.features.forEach(function (marker) {
 		el.style.webkitMaskImage = 'url(\'' + marker.properties.icon + '\')';
 		el.style.maskSize = 'contain';
 		el.style.webkitMaskSize = 'contain';
-		el.style.backgroundColor = ('#993300');
+		el.style.backgroundColor = (marker.properties.color);
+		el.style.opacity = (marker.properties.opacity);
 		/*var popup = new mapboxgl.Popup({ offset: marker.properties.iconSize[1]/2 + 2 }).setHTML(
 			"<div style=\"padding:12px\"><img class = \"popupimg\" src=\"" + marker.properties.image + "\" style=\"margin:auto; width:200px;display:block\" />" + marker.properties.description + '<div/>');*/
 		var popup = new mapboxgl.Popup({ offset: marker.properties.iconSize[1]/2 + 2 }).setHTML(
