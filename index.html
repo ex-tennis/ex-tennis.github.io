@@ -69,7 +69,8 @@ cursor: pointer;
 	color: white;
 	visibility: hidden;
     transition: opacity .2s ease-out;
-	overflow-y: scroll; 
+	overflow-y: scroll;
+	height:400px;
 }
 
 .innerbutton{
@@ -98,9 +99,9 @@ mapboxgl.accessToken = 'pk.eyJ1IjoibHVpc2UtaGFldXNlciIsImEiOiJja2d3MHEybHQwNW5pM
 var center_tennis_long = 8.349325060844421;
 var center_tennis_lat = 49.01890053442718;
 var center_tennis_zoom = 18;
-var center_libris_long = 8.354816213101884;
-var center_libris_lat = 49.013881060904495;
-var center_libris_zoom = 18;
+var center_libris_long = 8.35481822487982;
+var center_libris_lat = 49.01385841124823;
+var center_libris_zoom = 19.25;
 var markers = [];
 var items = {
 'type': 'geojson',
@@ -245,7 +246,7 @@ var items = {
 			'description': 'ex-tennis, am Mühlburger Bahnhof 18, 76189 Karlsruhe<br>Johanna Broziat, David Heitz, Florian Köhler, Maria Tackmann<br>6/11/21<br>7/11/21<br>Ausstellung jeweils von 11 bis 17 Uhr',
             'icon': 'https://ex-tennis.github.io/icons/tennis2.svg',
 			'image': '',
-            'iconSize': [20,20],
+            'iconSize': [22,22],
 			'rotation' : 0, 
 			'color': 'green',
 			'opacity': 0.9,
@@ -268,7 +269,7 @@ var items = {
 			'description': 'ex-libris, Rheinstraße 95, 76185 Karlsruhe<br>7/11/21<br>Buchpräsentation und Lesung<br>Eva Löbau liest aus Alles möglich (ab 18) von Johanna Broziat und Where are you? von Maria Tackmann mit anschliessendem Gespräch<br>16 Uhr',
             'icon': 'https://ex-tennis.github.io/icons/book2.svg',
 			'image': '',
-            'iconSize': [15,15],
+            'iconSize': [11, 11],
 			'rotation' : 0, 
 			'color': '#1E90FF',
 			'opacity': 0.9,
@@ -484,7 +485,7 @@ map.on('zoom', () => {
 var i = 0;
 markers.forEach(function (marker) {
 	//TO DO: Compute Properly!
-    const scalePercent = Math.pow(2, map.getZoom() - 18.5);
+    const scalePercent = Math.pow(2, map.getZoom() - center_tennis_zoom);
     const el = marker.getElement();
 	el.style.width = items.data.features[i].properties.iconSize[0]*scalePercent + 'px';
     el.style.height = items.data.features[i].properties.iconSize[1]*scalePercent + 'px';
