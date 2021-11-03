@@ -93,8 +93,10 @@ cursor: pointer;
 
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoibHVpc2UtaGFldXNlciIsImEiOiJja2d3MHEybHQwNW5pMzBycm9rOXFndzV0In0.0DUrtkqAOlmHkX8BXtixmw';
-var center_long = 8.349325060844421;
-var center_lat = 49.01890053442718;
+var center_tennis_long = 8.349325060844421;
+var center_tennis_lat = 49.01890053442718;
+var center_libris_long = 8.354816213101884;
+var center_libris_lat = 49.013881060904495;
 var markers = [];
 var items = {
 'type': 'geojson',
@@ -233,14 +235,58 @@ var items = {
         ]
       }
     }*/
+	    {
+      "type": "Feature",
+      "properties": {
+			'description': 'ex-tennis, am Mühlburger Bahnhof 18, 76189 Karlsruhe<br>Johanna Broziat, David Heitz, Florian Köhler, Maria Tackmann<br>6/11/21<br>7/11/21<br>Ausstellung jeweils von 11 bis 17 Uhr',
+            'icon': 'https://ex-tennis.github.io/icons/arrow.svg',
+			'image': '',
+            'iconSize': [15,15],
+			'rotation' : 0, 
+			'begin' : '2021-11-03-00-00',
+			'end' : '2100-12-31-23-59',
+			'begin_daily' : '00-00',
+			'end_daily' : '23-45'},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+			8.34906622774892,
+			49.01900929575768
+        ]
+      }
+    },
+
+		 	    {
+      "type": "Feature",
+      "properties": {
+			'description': 'ex-libris, Rheinstraße 95, 76185 Karlsruhe',
+            'icon': 'https://ex-tennis.github.io/icons/arrow.svg',
+			'image': '',
+            'iconSize': [15,15],
+			'rotation' : 0, 
+			'begin' : '2021-11-03-00-00',
+			'end' : '2100-12-31-23-59',
+			'begin_daily' : '00-00',
+			'end_daily' : '23-45'},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+			8.3548799155663,
+			49.013895134477224
+        ]
+      }
+    }
   ]
 }
 }
 
+
+49.01900929575768, 8.34906622774892
+
 var map = new mapboxgl.Map({
 container: 'map',
 style: 'mapbox://styles/luise-haeuser/cktemen6q2gba17s0txukk39c', 
-center: [center_long, center_lat], 
+center: [center_tennis_long, center_tennis_lat], 
 zoom: 18.5,
 /*maxZoom: 19,
 minZoom: 18*/
@@ -259,7 +305,7 @@ showUserHeading: true
 /*geolocate.on('geolocate', function(e) {
 	if(!nearAreal(e.coords.longitude, e.coords.latitude)) {
 				map.flyTo({
-					center: [center_long, center_lat],
+					center: [center_tennis_long, center_tennis_lat],
 					zoom: 18.5,
 					essential: true // this animation is considered essential with respect to prefers-reduced-motion
 				});
@@ -452,10 +498,10 @@ items.data.features.forEach(function (marker) {
 		el.style.maskSize = 'contain';
 		el.style.webkitMaskSize = 'contain';
 		el.style.backgroundColor = ('#993300');
+		/*var popup = new mapboxgl.Popup({ offset: marker.properties.iconSize[1]/2 + 2 }).setHTML(
+			"<div style=\"padding:12px\"><img class = \"popupimg\" src=\"" + marker.properties.image + "\" style=\"margin:auto; width:200px;display:block\" />" + marker.properties.description + '<div/>');*/
 		var popup = new mapboxgl.Popup({ offset: marker.properties.iconSize[1]/2 + 2 }).setHTML(
-			"<div style=\"padding:12px\"><img class = \"popupimg\" src=\"" + marker.properties.image + "\" style=\"margin:auto; width:200px;display:block\" />" + marker.properties.description + '<div/>'
-				
-		);
+			"<div style=\"padding:12px\">" + marker.properties.description + '<div/>');
 		
 		var m = new mapboxgl.Marker(el)
 		.setLngLat(marker.geometry.coordinates)
@@ -498,13 +544,13 @@ function visibleNow(marker) {
 	//Bis Bibliothek
 	var y_rad = 0.02;
 	var x_rad = 0.01;
-    var p = (parseInt(Math.pow((x - center_long), 2)) / parseInt(Math.pow(x_rad, 2)))
-            + (parseInt(Math.pow((y - center_lat), 2)) / parseInt(Math.pow(y_rad, 2)));
+    var p = (parseInt(Math.pow((x - center_tennis_long), 2)) / parseInt(Math.pow(x_rad, 2)))
+            + (parseInt(Math.pow((y - center_tennis_lat), 2)) / parseInt(Math.pow(y_rad, 2)));
  
     return p <= 1;
 }*/
 
-class ResetButton {
+class TennisButton {
   onAdd(map){
     this.map = map;
     this.container = document.createElement('div');
@@ -528,8 +574,42 @@ class ResetButton {
     el.className = className;
     el.addEventListener('click',(e)=>{
 		this.map.flyTo({
-center: [center_long, center_lat],
+center: [center_tennis_long, center_tennis_lat],
 zoom: 18.5,
+essential: true // this animation is considered essential with respect to prefers-reduced-motion
+});
+    },false )
+    return el;
+  }
+}
+
+
+class LibrisButton {
+  onAdd(map){
+    this.map = map;
+    this.container = document.createElement('div');
+	this.container.style.backgroundSize = 'cover';
+	this.container.style.backgroundImage = 'url(https://ex-tennis.github.io/icons/reset.svg)';
+	this.container.style.width = '25px';
+	this.container.style.height = '25px';
+    this.container.style.margin = '1em 1em 0em 0em';
+    this.container.className = 'mapboxgl-ctrl';
+    const button = this._createButton('button2')
+    this.container.appendChild(button);
+    return this.container;
+  }
+  onRemove(){
+    this.container.parentNode.removeChild(this.container);
+    this.map = undefined;
+  }
+  
+  _createButton(className) {
+    const el = window.document.createElement('button')
+    el.className = className;
+    el.addEventListener('click',(e)=>{
+		this.map.flyTo({
+center: [center_libris_long, center_libris_lat],
+zoom: 19,
 essential: true // this animation is considered essential with respect to prefers-reduced-motion
 });
     },false )
@@ -571,8 +651,11 @@ class AboutButton {
   }
 }
 
-const resetButton = new ResetButton();
-map.addControl(resetButton);
+const tennisButton = new TennisButton();
+map.addControl(tennisButton);
+
+const librisButton = new LibrisButton();
+map.addControl(librisButton);
 
 const aboutButton = new AboutButton();
 map.addControl(aboutButton);
@@ -580,8 +663,8 @@ map.addControl(aboutButton);
 
 /*function createGeoJSONCircle() {
  var coords = {
-        latitude: center_lat,
-        longitude: center_long
+        latitude: center_tennis_lat,
+        longitude: center_tennis_long
     };
 
     var km = 0.03;
