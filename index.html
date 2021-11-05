@@ -253,7 +253,7 @@ var items = {
 			'begin' : '2021-11-03-00-00',
 			'end' : '2100-12-31-23-59',
 			'begin_daily' : '00-00',
-			'end_daily' : '23-45'},
+			'end_daily' : '23-59'},
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -262,8 +262,167 @@ var items = {
         ]
       }
     },
-
-		 	    {
+	{
+      "type": "Feature",
+      "properties": {
+			'description': 'Florian Köhler',
+            'icon': 'https://ex-tennis.github.io/icons/point.svg',
+			'image': '',
+            'iconSize': [8,8],
+			'rotation' : 0, 
+			'color': '#993300',
+			'opacity': 1,
+			'begin' : '2021-11-03-00-00',
+			'end' : '2100-12-31-23-59',
+			'begin_daily' : '00-00',
+			'end_daily' : '23-59'},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+			8.349283,
+			49.019064
+        ]
+      }
+    },
+	{
+      "type": "Feature",
+      "properties": {
+			'description': 'Johanna Broziat',
+            'icon': 'https://ex-tennis.github.io/icons/point.svg',
+			'image': '',
+            'iconSize': [8,8],
+			'rotation' : 0, 
+			'color': '#993300',
+			'opacity': 1,
+			'begin' : '2021-11-05-00-00',
+			'end' : '2100-12-31-23-59',
+			'begin_daily' : '00-00',
+			'end_daily' : '23-59',
+			'area' : {'type': 'geojson',
+				'data': {'type': 'Feature',
+							'geometry': {'type': 'Polygon','coordinates': [[
+            [
+				8.34963142136261,
+				49.018853659790366
+            ],
+            [
+				8.349561683930935,
+				49.01883431055337 
+            ],
+            [
+				8.349533528236616,
+				49.01888308046764
+            ],
+            [
+				8.349601917066398,
+				49.01889895456616
+            ],
+            [
+				8.34963142136261,
+				49.018853659790366
+            ]
+			]]}}}},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+		8.349504331742626,
+49.01885969996222
+            ]
+      }
+    },
+	{
+      "type": "Feature",
+      "properties": {
+			'description': 'Maria Tackmann',
+            'icon': 'https://ex-tennis.github.io/icons/point.svg',
+			'image': '',
+            'iconSize': [8,8],
+			'rotation' : 0, 
+			'color': '#993300',
+			'opacity': 1,
+			'begin' : '2021-11-05-00-00',
+			'end' : '2100-12-31-23-59',
+			'begin_daily' : '00-00',
+			'end_daily' : '23-59',
+			'area' : {'type': 'geojson',
+				'data': {'type': 'Feature',
+							'geometry': {'type': 'Polygon','coordinates': [[
+            [
+				8.349453999820124,
+				49.018837956505884
+            ],
+            [
+				8.349430,
+				49.018865
+            ],
+            [
+				8.349372,
+				49.018853
+            ],
+            [
+				8.349396332328547,
+				49.01881728799592
+            ],
+            [
+				8.349453999820124,
+				49.018837956505884
+            ]
+			]]}}}},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+		8.349405780198776,
+49.01882469185381
+            ]
+      }
+    },
+	{
+      "type": "Feature",
+      "properties": {
+			'description': 'Maria Tackmann',
+            'icon': 'https://ex-tennis.github.io/icons/point.svg',
+			'image': '',
+            'iconSize': [8,8],
+			'rotation' : 0, 
+			'color': '#993300',
+			'opacity': 1,
+			'begin' : '2021-11-05-00-00',
+			'end' : '2100-12-31-23-59',
+			'begin_daily' : '00-00',
+			'end_daily' : '23-59',
+			'area' : {'type': 'geojson',
+				'data': {'type': 'Feature',
+							'geometry': {'type': 'Polygon','coordinates': [[
+	        [
+				8.349288,
+				49.018836
+            ],
+            [
+				8.349345929880027,
+				49.01885867944105
+            ],
+            [
+				8.349286,
+				49.018915
+            ],
+            [
+				8.349231679586644,
+				49.01889740408753
+            ],
+            [
+				8.349288,
+				49.018836
+            ]
+			]]}}}},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+			8.349251399207986,
+			49.01887386323763
+            ]
+      }
+    },
+	{
       "type": "Feature",
       "properties": {
 			'description': 'ex-libris, Rheinstraße 95, 76185 Karlsruhe<br>7/11/21<br>Buchpräsentation und Lesung<br>Eva Löbau liest aus Alles möglich (ab 18) von Johanna Broziat und Where are you? von Maria Tackmann mit anschliessendem Gespräch<br>16 Uhr',
@@ -276,7 +435,7 @@ var items = {
 			'begin' : '2021-11-03-00-00',
 			'end' : '2100-12-31-23-59',
 			'begin_daily' : '00-00',
-			'end_daily' : '23-45'},
+			'end_daily' : '23-59'},
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -410,6 +569,21 @@ map.addSource('border_ex_libris', {
 }
 });
 
+map.addSource('route', {
+'type': 'geojson',
+'data':{"type":"Feature","properties":{},"geometry":{"type":"LineString","coordinates":[[8.349080999999615,49.01900099999983],[8.349156000000022,49.018999000000036],[8.349201000000306,49.019012999999944],[8.349286999999947,49.01898399999999],[8.349299999999573,49.018969999999854],[8.34935599999909,49.0189679999998],[8.349398999998954,49.01895199999993],[8.349420000000237,49.018933999999945],[8.34941399999903,49.01891100000009],[8.349471999998912,49.01885400000006],[8.349461999999875,49.018830000000065],[8.34938599999927,49.018800999999996],[8.349332000000146,49.018790000000024],[8.349288000000115,49.018775999999804],[8.349216999999044,49.018752999999805],[8.3491539999996,49.01881699999984],[8.349139999999721,49.01885400000006],[8.349133999999992,49.01890299999985]]}}
+});
+
+map.addSource('route_florian', {
+'type': 'geojson',
+'data':{"type":"Feature","properties":{},"geometry":{"type":"LineString","coordinates":[[8.349201000000306,49.019012999999944],[8.349235999999962,49.0190360000002]]}}
+});
+
+map.addSource('route_tür', {
+'type': 'geojson',
+'data':{"type":"Feature","properties":{},"geometry":{"type":"LineString","coordinates":[[8.349420000000237,49.018933999999945],[8.349493000000251,49.018939999999986],[8.349560999999227,49.018969999999854]]}}
+});
+
 
 //map.addSource("polygon", createGeoJSONCircle());
 
@@ -458,7 +632,43 @@ map.addLayer({
 }
 });
 
-var i = 0
+map.addLayer({
+'id': 'r',
+'type': 'line',
+'source': 'route',
+'layout': {},
+'paint': {
+'line-color': 'black',
+'line-width': 3,
+'line-opacity': 0.1,
+'line-dasharray': [2, 1],
+}});
+
+map.addLayer({
+'id': 'r_florian',
+'type': 'line',
+'source': 'route_florian',
+'layout': {},
+'paint': {
+'line-color': 'black',
+'line-width': 3,
+'line-opacity': 0.1,
+'line-dasharray': [2, 1],
+}});
+
+map.addLayer({
+'id': 'r_tür',
+'type': 'line',
+'source': 'route_tür',
+'layout': {},
+'paint': {
+'line-color': 'black',
+'line-width': 3,
+'line-opacity': 0.1,
+'line-dasharray': [2, 1],
+}});
+
+/*var i = 0
 items.data.features.forEach(function (marker) {
 	if(visibleNow(marker)){
 		if(map.getSource('area_' + i) == undefined && marker.properties.area != undefined) {
@@ -475,7 +685,7 @@ items.data.features.forEach(function (marker) {
 		}
 		i++;
 	}
-});
+});*/
 
 
 
