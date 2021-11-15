@@ -98,7 +98,7 @@ cursor: pointer;
 mapboxgl.accessToken = 'pk.eyJ1IjoibHVpc2UtaGFldXNlciIsImEiOiJja2d3MHEybHQwNW5pMzBycm9rOXFndzV0In0.0DUrtkqAOlmHkX8BXtixmw';
 var center_tennis_long = 8.349325060844421;
 var center_tennis_lat = 49.01890053442718;
-var center_tennis_zoom = 18;
+var center_tennis_zoom = 18.25;
 var center_libris_long = 8.35481822487982;
 var center_libris_lat = 49.01385841124823;
 var center_libris_zoom = 19.25;
@@ -243,7 +243,7 @@ var items = {
 	    {
       "type": "Feature",
       "properties": {
-			'description': 'ex-tennis, am Mühlburger Bahnhof 18, 76189 Karlsruhe<br>Johanna Broziat, David Heitz, Florian Köhler, Maria Tackmann<br>6/11/21<br>7/11/21<br>Ausstellung jeweils von 11 bis 17 Uhr',
+			'description': 'ex-tennis, am Mühlburger Bahnhof 18, 76189 Karlsruhe',
             'icon': 'https://ex-tennis.github.io/icons/tennis2.svg',
 			'image': '',
             'iconSize': [22,22],
@@ -372,8 +372,8 @@ var items = {
         "type": "Point",
         "coordinates": [
 		8.349405780198776,
-49.01882469185381
-            ]
+		49.01882469185381
+        ]
       }
     },
 	{
@@ -425,7 +425,7 @@ var items = {
 	{
       "type": "Feature",
       "properties": {
-			'description': 'ex-libris, Rheinstraße 95, 76185 Karlsruhe<br>7/11/21<br>Buchpräsentation und Lesung<br>Eva Löbau liest aus Alles möglich (ab 18) von Johanna Broziat und Where are you? von Maria Tackmann mit anschliessendem Gespräch<br>16 Uhr',
+			'description': 'ex-libris, Rheinstraße 95, 76185 Karlsruhe',
             'icon': 'https://ex-tennis.github.io/icons/book2.svg',
 			'image': '',
             'iconSize': [11, 11],
@@ -454,7 +454,7 @@ var map = new mapboxgl.Map({
 container: 'map',
 style: 'mapbox://styles/luise-haeuser/cktemen6q2gba17s0txukk39c', 
 center: [center_tennis_long, center_tennis_lat], 
-zoom: 18.25,
+zoom: center_tennis_zoom,
 /*maxZoom: 19,
 minZoom: 18*/
 });
@@ -925,24 +925,11 @@ map.addControl(aboutButton);
 
 <div class="overlay" style="visibility: hidden;">
 <button  class = "innerbutton" onclick="document.querySelector('.overlay').style.visibility = 'hidden'">close</button>
-5/11/21<br>
-6/11/21<br>
-7/11/21<br>
-<br>
 lokal open<br>
 Johanna Broziat, David Heitz, Florian Köhler, Maria Tackmann<br>
-11 bis 17 Uhr<br>
 <br>
-Interaktiver Ausstellungsplan (ab 5/11/21)<br>
+Interaktiver Ausstellungsplan<br>
 Interdisziplinäre Kooperation Luise Häuser und David Heitz<br>
-<br>
-<br>
-7/11/21<br>
-Buchpräsentation und Lesung<br>
-Eva Löbau liest aus Alles möglich (ab 18) von Johanna Broziat<br>
-und Where are you? von Maria Tackmann<br>
-mit anschliessendem Gespräch<br>
-16 Uhr<br>
 <br>
 
 <a href="https://instagram.com/libris_ex_libris"  style="color: white">@instagram</a> </div>
